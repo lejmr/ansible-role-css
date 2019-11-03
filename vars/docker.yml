@@ -1,0 +1,2 @@
+template_unit_path: "unit-docker.j2"
+docker_path: "/usr/bin/docker"

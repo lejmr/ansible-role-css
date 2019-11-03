@@ -9,13 +9,6 @@
   when: container_env is defined
   notify: restart container {{ container_name }}
 
-- name: Pull image {{ container_image }}
-  docker_image:
-    name: '{{ container_image }}'
-    force: true
-  when: container_docker_pull
-  notify: restart container {{ container_name }}
-
 - name: Create unit {{ service_name }}.service
   template:
     src: "{{ template_unit_path }}"

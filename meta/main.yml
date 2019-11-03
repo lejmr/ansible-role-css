@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  name: docker_systemd_service
-  author: Manuel Hutter
+  name: container-systemd-service
+  author: Milos Kozak
   description: Create Systemd services for docker containers.
   license: MIT
 
@@ -11,6 +11,7 @@ galaxy_info:
     - name: EL
       versions:
         - 7
+        - 8
     - name: Ubuntu
       versions:
         - xenial
@@ -22,5 +23,6 @@ galaxy_info:
     - systemd
     - server
     - docker
+    - podman
 
 dependencies: []
