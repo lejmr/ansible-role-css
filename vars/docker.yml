@@ -1,2 +1,3 @@
+---
 template_unit_path: "docker-unit.j2"
 docker_path: "/usr/bin/docker"

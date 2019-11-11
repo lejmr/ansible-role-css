@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: css
   author: Milos Kozak
-  description: Ansible role for creating Systemd services for docker and podman containers
+  description: Ansible role creating Systemd services for docker and podman containers
   license: MIT
 
   min_ansible_version: 2.0
