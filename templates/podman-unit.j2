@@ -3,9 +3,8 @@
 {% for v in vals %}-{{ name }} {{ v }} {% endfor %}
 {% endmacro %}
 [Unit]
-#After=docker.service
-#PartOf=docker.service
-#Requires=docker.service
+Description=Podman Container for {{ container_name }}
+After=network.target
 
 [Service]
 {% for key, value in service_systemd_options.iteritems() %}
@@ -39,5 +38,5 @@ Restart=always
 RestartSec=10s
 {% endif %}
 
-#[Install]
-#WantedBy=docker.service
+[Install]
+WantedBy=multi-user.target

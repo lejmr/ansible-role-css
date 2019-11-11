@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  name: container-systemd-service
+  role_name: css
   author: Milos Kozak
-  description: Create Systemd services for docker containers.
+  description: Create Systemd services for docker/podman containers.
   license: MIT
 
   min_ansible_version: 2.0
