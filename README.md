@@ -1,14 +1,14 @@
-# Docker role `mhutter.docker-systemd-service`
-[![Build Status](https://travis-ci.com/mhutter/ansible-docker-systemd-service.svg?branch=master)](https://travis-ci.com/mhutter/ansible-docker-systemd-service)
+# Docker role `lejmr.css`
+[![Build Status](https://travis-ci.com/lejmr/css.svg?branch=master)](https://travis-ci.com/lejmr/css)
 
-Generic role for creating systemd services to manage docker containers.
+Generic role for creating systemd services to manage docker/podman containers. This role is based on mhutter.docker-systemd-service.
 
 ## Example
 
 ```yaml
 - name: Start WebApp
   include_role:
-    name: mhutter.docker-systemd-service
+    name: lejmr.css
   vars:
     container_name: myapp
     container_image: myapp:latest
@@ -27,14 +27,15 @@ This will create:
 
 * A file containing the env vars (either `/etc/sysconfig/mysql` or `/etc/default/mysql`).
 * A systemd unit which starts and stops the container. The unit will be called
-  `<name>_container.service` to avoid name clashes.
+  `<container_type>-<name>.service` to avoid name clashes.
 
 ### Role variables
 
 * `container_name` (**required**) - name of the container
 
-#### Docker container specifics
+#### Container specifics
 
+* `container_hostname` (default: ) - Sets hostname to container if defined
 * `container_image` (**required**) - Docker image the service uses
 * `container_args` - arbitrary list of arguments to the `docker run` command
 * `container_cmd` - optional command to the container run command (the part after the
@@ -43,6 +44,7 @@ This will create:
 * `container_volumes` (default: _[]_) - List of `-v` arguments
 * `container_host_network` (default: _false_) - Whether the host network should be used
 * `container_ports` (default: _[]_) - List of `-p` arguments
+* `container_privileged` (default: _false_) - Whether is container started with on priviledged level
 * `container_link` (default: _[]_) - List of `--link` arguments
 * `container_labels` (default: _[]_) - List of `-l` arguments
 * `container_docker_pull` (default: _yes_) - whether the docker image should be pulled
@@ -68,7 +70,7 @@ Install it with `pip3 install docker` or `apt install python3-docker`
 Put this in your `requirements.yml`:
 
 ```yml
-- role: mhutter.docker-systemd-service
+- role: lejmr.css
 ```
 
 and run `ansible-galaxy install -r requirements.yml`.
@@ -93,7 +95,7 @@ This has some benefits:
 - startup behaviour can be defined
 - by correctly defining the unit (see below), we can ensure we always have a clean container.
 
-Here is an example `myapp_container.service` unit file (about what's produced
+Here is an example `docker-myapp.service` unit file (about what's produced
 by above code):
 
     [Unit]
